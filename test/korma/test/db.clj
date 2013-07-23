@@ -72,18 +72,20 @@
   (testing "oracle - defaults"
     (is (= {:classname "oracle.jdbc.driver.OracleDriver"
             :subprotocol "oracle:thin"
-            :subname "@localhost:1521"
+            :subname "@localhost:1521:orcl"
             :make-pool? true}
            (oracle {}))))
   (testing "oracle - options selected"
     (is (= {:port "port"
             :host "host"
+            :sid "sid"
             :classname "oracle.jdbc.driver.OracleDriver"
             :subprotocol "oracle:thin"
-            :subname "@host:port"
+            :subname "@host:port:sid"
             :make-pool? false}
            (oracle {:host "host"
                     :port "port"
+                    :sid "sid"
                     :make-pool? false})))))
 
 (deftest test-mysql

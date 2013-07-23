@@ -83,12 +83,12 @@
 (defn oracle
   "Create a database specification for an Oracle database. Opts should include keys
   for :user and :password. You can also optionally set host and port."
-  [{:keys [host port make-pool?]
-    :or {host "localhost", port 1521, make-pool? true}
+  [{:keys [host port sid make-pool?]
+    :or {host "localhost", port 1521, sid "orcl", make-pool? true}
     :as opts}]
   (merge {:classname "oracle.jdbc.driver.OracleDriver" ; must be in classpath
           :subprotocol "oracle:thin"
-          :subname (str "@" host ":" port)
+          :subname (str "@" host ":" port ":" sid)
           :make-pool? make-pool?}
          opts))
 
